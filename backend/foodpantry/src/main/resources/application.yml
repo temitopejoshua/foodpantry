@@ -1,0 +1,26 @@
+spring:
+  application:
+    version: 1.0.0
+    profile: dev
+    name: Food Pantry App
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  show-sql: true
+
+server:
+  port: 5050
+  error:
+    include-stacktrace: never
+
+security:
+  jwt:
+    token:
+      issuer: bowiestateuni
+
+pantry:
+  system:
+    email: group-sec@mailinator.com

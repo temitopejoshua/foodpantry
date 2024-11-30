@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: Ember;
+    src: url("asssets/fonts/ember/AmazonEmberDisplay_Rg.ttf");
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: Ember;
+    src: url("asssets/fonts/ember/AmazonEmberDisplay_Md.ttf");
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: Ember;
+    src: url("asssets/fonts/ember/AmazonEmberDisplay_Bd.ttf");
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: Ember;
+    src: url("asssets/fonts/ember/AmazonEmberDisplay_He.ttf");
+    font-weight: 800;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: Ember;
+    src: url("asssets/fonts/ember/AmazonEmberDisplay_Lt.ttf");
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  html {
+    @apply bg-[#f2f3f3] text-[#16191f] leading-[1.5];
+    font-size: 14px;
+  }
+
+  a:not(.link-reset) {
+    @apply text-primary hover:underline;
+  }
+
+  h1 {
+    @apply typo-h1;
+  }
+
+  h2 {
+    @apply typo-h2;
+  }
+
+  h3 {
+    @apply typo-h3;
+  }
+
+  h4 {
+    @apply typo-h4;
+  }
+
+  h5 {
+    @apply typo-h5;
+  }
+
+  h6 {
+    @apply typo-h6;
+  }
+
+  p {
+    @apply typo-body;
+  }
+
+  small {
+    @apply typo-small;
+  }
+}
+
+@layer components {
+  .typo-h1 {
+    font-size: 3.815rem;
+  }
+
+  .typo-h2 {
+    font-size: 3.052rem;
+  }
+
+  .typo-h3 {
+    font-size: 2.441rem;
+  }
+
+  .typo-h4 {
+    font-size: 1.953rem;
+  }
+
+  .typo-h5 {
+    font-size: 1.563rem;
+  }
+
+  .typo-h6 {
+    font-size: 1.25rem;
+  }
+
+  .typo-body {
+    font-size: 1rem;
+  }
+
+  .typo-small {
+    font-size: 0.8rem;
+  }
+
+  .typo-caption {
+    font-size: 0.64rem;
+  }
+
+  // TABLE
+  .table_c {
+    @apply block w-full relative border-l border-r overflow-x-auto;
+
+    &__main {
+      @apply w-full text-left text-zinc-800;
+    }
+
+    &__head {
+      @apply typo-body text-zinc-800 bg-zinc-50 border border-l-0 border-r-0 border-zinc-200;
+
+      &__th {
+        @apply px-6 py-2 font-medium;
+      }
+    }
+
+    &__body {
+      &__tr {
+        @apply border-b border-zinc-200;
+      }
+    }
+
+    &__td {
+      @apply px-6 py-2 md:py-4;
+    }
+  }
+
+  .modal {
+    &-html {
+      @apply overflow-hidden;
+    }
+
+    &-overlay {
+      @apply w-[100vw] h-screen fixed z-50 bg-black bg-opacity-70 top-0 left-0 bottom-0 right-0 flex px-5 py-10 flex-col items-center outline-0 overflow-y-auto;
+    }
+
+    &-body {
+      @apply my-auto w-auto max-w-full bg-white border border-zinc-200 drop-shadow-sm outline-0 animate-enter relative;
+    }
+  }
+
+  .approvals {
+    @apply flex flex-col-reverse gap-5 max-h-[70vh] overflow-y-auto p-5;
+
+    .approval {
+      @apply flex items-stretch gap-4;
+
+      & > div:nth-of-type(1) {
+        @apply relative;
+
+        &::before {
+          @apply content-[""] w-0.5 h-full absolute bg-gray-200 left-1/2 -translate-x-1/2 top-8 z-[0];
+        }
+
+        & > div {
+          @apply w-10 aspect-square rounded-full text-white flex items-center justify-center relative z-[2];
+        }
+      }
+
+      &:first-of-type > div:nth-of-type(1)::before {
+        @apply hidden;
+      }
+
+      & > div:nth-of-type(2) {
+        @apply flex-1;
+      }
+    }
+  }
+}
