@@ -4,7 +4,7 @@ import edu.bowiestateuni.groupproj.foodpantry.dao.EmployeeDAO;
 import edu.bowiestateuni.groupproj.foodpantry.dao.UserDAO;
 import edu.bowiestateuni.groupproj.foodpantry.entities.EmployeeEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.UserEntity;
-import edu.bowiestateuni.groupproj.foodpantry.entities.constant.EmployeeRoleTypeConstant;
+import edu.bowiestateuni.groupproj.foodpantry.entities.constant.RoleTypeConstant;
 import edu.bowiestateuni.groupproj.foodpantry.entities.constant.UserTypeConstant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -45,7 +45,7 @@ public class FoodPantryApplication implements CommandLineRunner {
 					.build();
 			final EmployeeEntity employeeEntity = EmployeeEntity.builder()
 					.user(userEntity)
-					.employeeRole(EmployeeRoleTypeConstant.CEO)
+					.employeeRole(RoleTypeConstant.CEO)
 					.ssn("XXXX-XX-XXXX")
 					.accountNumber("1234567890")
 					.dateOfBirth(LocalDate.now())

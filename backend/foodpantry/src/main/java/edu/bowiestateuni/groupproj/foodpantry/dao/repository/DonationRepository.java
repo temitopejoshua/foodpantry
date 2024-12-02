@@ -7,6 +7,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DonationRepository extends JpaRepository<DonationEntity, Long> {
-    Page<DonationEntity> findAllByDonatedBy(UserEntity donatedBy, Pageable pageable);
-
+    Page<DonationEntity> findAllByDonatedByOrderByDateCreatedDesc(UserEntity donatedBy, Pageable pageable);
 }

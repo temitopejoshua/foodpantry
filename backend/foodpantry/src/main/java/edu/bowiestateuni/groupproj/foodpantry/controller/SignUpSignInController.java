@@ -34,6 +34,7 @@ public class SignUpSignInController {
         final CustomerDTO responseDTO = registrationService.registerCustomer(registrationRequest);
         return ResponseEntity.ok(responseDTO);
     }
+
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LoginResponseDTO> processLogin(@Valid @RequestBody final LoginRequestDTO loginRequest, HttpServletRequest servletRequest, HttpServletResponse httpServletResponse) {
         final LoginResponseDTO responseDTO = loginService.processLogin(loginRequest, servletRequest);
@@ -46,6 +47,3 @@ public class SignUpSignInController {
         return ResponseEntity.ok(responseDTO);
     }
 }
-//dfgdfaf
-
-//srgsrgwrg

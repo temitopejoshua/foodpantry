@@ -20,6 +20,11 @@ security:
   jwt:
     token:
       issuer: bowiestateuni
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
 
 pantry:
   system:

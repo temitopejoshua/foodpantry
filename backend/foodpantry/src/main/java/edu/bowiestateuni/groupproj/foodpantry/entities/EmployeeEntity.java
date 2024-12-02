@@ -1,6 +1,6 @@
 package edu.bowiestateuni.groupproj.foodpantry.entities;
 
-import edu.bowiestateuni.groupproj.foodpantry.entities.constant.EmployeeRoleTypeConstant;
+import edu.bowiestateuni.groupproj.foodpantry.entities.constant.RoleTypeConstant;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,7 +25,7 @@ public class EmployeeEntity extends AbstractBaseEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EmployeeRoleTypeConstant employeeRole;
+    private RoleTypeConstant employeeRole;
 
     private String ssn;
     @Column(nullable = false)

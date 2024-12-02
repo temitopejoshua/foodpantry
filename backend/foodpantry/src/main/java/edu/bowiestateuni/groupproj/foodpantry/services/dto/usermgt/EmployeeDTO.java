@@ -1,6 +1,6 @@
 package edu.bowiestateuni.groupproj.foodpantry.services.dto.usermgt;
 
-import edu.bowiestateuni.groupproj.foodpantry.entities.constant.EmployeeRoleTypeConstant;
+import edu.bowiestateuni.groupproj.foodpantry.entities.constant.RoleTypeConstant;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class EmployeeDTO {
     private long id;
     private UserDTO user;
-    private EmployeeRoleTypeConstant role;
+    private RoleTypeConstant role;
     private LocalDate dateOfBirth;
     private String accountNumber;
     private String routingNumber;

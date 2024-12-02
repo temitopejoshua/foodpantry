@@ -4,7 +4,7 @@ import edu.bowiestateuni.groupproj.foodpantry.dao.EmployeeDAO;
 import edu.bowiestateuni.groupproj.foodpantry.dao.UserDAO;
 import edu.bowiestateuni.groupproj.foodpantry.entities.EmployeeEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.UserEntity;
-import edu.bowiestateuni.groupproj.foodpantry.entities.constant.EmployeeRoleTypeConstant;
+import edu.bowiestateuni.groupproj.foodpantry.entities.constant.RoleTypeConstant;
 import edu.bowiestateuni.groupproj.foodpantry.entities.constant.UserTypeConstant;
 import edu.bowiestateuni.groupproj.foodpantry.services.LoginService;
 import edu.bowiestateuni.groupproj.foodpantry.services.dto.login.LoginRequestDTO;
@@ -43,7 +43,7 @@ public class LoginServiceImpl implements LoginService {
 
     private LoginResponseDTO createToken(final UserEntity userEntity) {
         final int tokenExpiryInMins = 60;
-        EmployeeRoleTypeConstant employeeRole = EmployeeRoleTypeConstant.CUSTOMER;
+        RoleTypeConstant employeeRole = RoleTypeConstant.CUSTOMER;
         if(userEntity.getUserType() != UserTypeConstant.CUSTOMER){
             final EmployeeEntity employee = employeeDAO.findByUser(userEntity).orElseThrow(() -> new IllegalArgumentException("Invalid user details provided"));
             employeeRole= employee.getEmployeeRole();

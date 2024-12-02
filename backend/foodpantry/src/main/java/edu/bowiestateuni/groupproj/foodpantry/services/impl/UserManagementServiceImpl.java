@@ -7,7 +7,7 @@ import edu.bowiestateuni.groupproj.foodpantry.dao.UserDAO;
 import edu.bowiestateuni.groupproj.foodpantry.entities.AuditTrailEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.EmployeeEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.constant.AuditTrailAction;
-import edu.bowiestateuni.groupproj.foodpantry.entities.constant.EmployeeRoleTypeConstant;
+import edu.bowiestateuni.groupproj.foodpantry.entities.constant.RoleTypeConstant;
 import edu.bowiestateuni.groupproj.foodpantry.services.UserManagementService;
 import edu.bowiestateuni.groupproj.foodpantry.services.dto.usermgt.CustomerDTO;
 import edu.bowiestateuni.groupproj.foodpantry.services.dto.usermgt.EmployeeDTO;
@@ -49,7 +49,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Override
     public EmployeeDTO changeEmployeeRole(AuthenticatedUser authenticatedUser, EmployeeUpdateRequestDTO requestDTO) {
         final EmployeeEntity employee = employeeDAO.findById(requestDTO.getEmployeeId()).orElseThrow(() -> new IllegalArgumentException("No Employee found with the specified id " + requestDTO.getEmployeeId()));
-        final EmployeeRoleTypeConstant role = EmployeeRoleTypeConstant.valueOf(requestDTO.getRole());
+        final RoleTypeConstant role = RoleTypeConstant.valueOf(requestDTO.getRole());
         log.info("User - [{}] trying to change role of employee - [{}] to [{}]", authenticatedUser.getEmail(), employee.getUser().getEmailAddress(), requestDTO.getRole());
         final String comment = String.format("Employee role changed from [%s] to [%s]", employee.getEmployeeRole(), requestDTO.getRole());
         final AuditTrailEntity auditTrailEntity = createAuditTrail(authenticatedUser.getEmail(), employee, comment);

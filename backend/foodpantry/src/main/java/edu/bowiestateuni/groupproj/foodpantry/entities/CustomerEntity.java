@@ -3,8 +3,6 @@ package edu.bowiestateuni.groupproj.foodpantry.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter
@@ -19,5 +17,4 @@ public class CustomerEntity extends AbstractBaseEntity{
 
     @Column(nullable = false)
     private String phoneNumber;
-
 }

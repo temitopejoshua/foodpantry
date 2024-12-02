@@ -20,6 +20,6 @@ public class DonationDAOImpl extends CrudDAOImpl<DonationEntity, Long> implement
 
     @Override
     public Page<DonationEntity> findAllByDonatedBy(UserEntity donatedBy, Pageable pageable) {
-        return repository.findAllByDonatedBy(donatedBy, pageable);
+        return repository.findAllByDonatedByOrderByDateCreatedDesc(donatedBy, pageable);
     }
 }

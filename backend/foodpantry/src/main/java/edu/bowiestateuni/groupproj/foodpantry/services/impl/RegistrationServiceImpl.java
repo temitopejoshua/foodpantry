@@ -9,7 +9,7 @@ import edu.bowiestateuni.groupproj.foodpantry.entities.CustomerEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.EmployeeEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.UserEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.constant.AuditTrailAction;
-import edu.bowiestateuni.groupproj.foodpantry.entities.constant.EmployeeRoleTypeConstant;
+import edu.bowiestateuni.groupproj.foodpantry.entities.constant.RoleTypeConstant;
 import edu.bowiestateuni.groupproj.foodpantry.entities.constant.UserTypeConstant;
 import edu.bowiestateuni.groupproj.foodpantry.services.RegistrationService;
 import edu.bowiestateuni.groupproj.foodpantry.services.dto.registration.RegistrationRequestDTO;
@@ -136,7 +136,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .accountNumber(encryptedAccountNumber)
                 .routingNumber(encryptedRoutingNumber)
                 .ssn(encryptedSSN)
-                .employeeRole(EmployeeRoleTypeConstant.valueOf(registrationRequest.getRole()))
+                .employeeRole(RoleTypeConstant.valueOf(registrationRequest.getRole()))
                 .build();
     }
     private void createAuditTrail(final AuthenticatedUser creator, final EmployeeEntity employeeEntity){

@@ -3,6 +3,7 @@ package edu.bowiestateuni.groupproj.foodpantry.services.impl;
 import edu.bowiestateuni.groupproj.foodpantry.dao.AuditTrailDAO;
 import edu.bowiestateuni.groupproj.foodpantry.dao.DonationDAO;
 import edu.bowiestateuni.groupproj.foodpantry.dao.UserDAO;
+import edu.bowiestateuni.groupproj.foodpantry.entities.AbstractBaseEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.AuditTrailEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.DonationEntity;
 import edu.bowiestateuni.groupproj.foodpantry.entities.UserEntity;
@@ -19,10 +20,12 @@ import edu.bowiestateuni.groupproj.foodpantry.utils.WebUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 @Service
 @AllArgsConstructor
@@ -93,7 +96,10 @@ public class DonationServiceImpl implements DonationService {
             donations = donationDAO.findAllByDonatedBy(user, page).map(this::entityToResponse);
         } else {
             log.info("User is not a CUSTOMER. Fetching all donations.");
-            donations = donationDAO.findAll(page).map(this::entityToResponse);
+            Page<DonationEntity> donationEntities = donationDAO.findAll(page);
+            donations = new PageImpl<>(donationEntities.stream()
+                    .sorted(Comparator.comparing(AbstractBaseEntity::getDateCreated).reversed())
+                    .map(this::entityToResponse).toList(), donationEntities.getPageable(), donationEntities.getTotalElements());
         }
 
         log.info("Fetched {} donations for user: {}", donations.getTotalElements(), currentUser.getEmail());
@@ -115,7 +121,7 @@ public class DonationServiceImpl implements DonationService {
                 donationEntity.getStatus(),
                 donationEntity.getQuantityDonated(),
                 donationEntity.getFoodType(),
-                donationEntity.getDonatedBy().getName(),
+                donationEntity.getDonatedBy().getEmailAddress(),
                 donationEntity.getDateCreated().format(DateTimeFormatter.ofPattern("EEE, MMM d yyyy h:mm a"))
         );
     }

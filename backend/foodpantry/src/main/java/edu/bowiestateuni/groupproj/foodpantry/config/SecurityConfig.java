@@ -44,11 +44,10 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig{
 
     private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
+            new AntPathRequestMatcher("/"),
             new AntPathRequestMatcher("/api/v1/register"),
             new AntPathRequestMatcher("/api/v1/employee/register"),
-            new AntPathRequestMatcher("/api/v1/login"),
-            new AntPathRequestMatcher("/api/v1/game/tic-tac-toe/play"),
-            new AntPathRequestMatcher("/api/v1/game/tic-tac-toe/reset")
+            new AntPathRequestMatcher("/api/v1/login")
     );
 
     private static final RequestMatcher PROTECTED_URLS = new NegatedRequestMatcher(PUBLIC_URLS);
@@ -65,6 +64,7 @@ public class SecurityConfig{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable)
+                .headers((headers) -> headers.contentSecurityPolicy(contentSecurityPolicyConfig -> contentSecurityPolicyConfig.policyDirectives("default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self';")))
                 .authorizeHttpRequests(request -> request.requestMatchers(PUBLIC_URLS)
                         .permitAll().requestMatchers(PROTECTED_URLS).authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
@@ -107,7 +107,7 @@ public class SecurityConfig{
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://10.0.0.192:3000", "http://10.0.0.189:3000"));
+        configuration.setAllowedOrigins(List.of("http://10.0.0.192:3000", "http://10.0.0.189:3000"));
         configuration.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         configuration.setAllowCredentials(true);
