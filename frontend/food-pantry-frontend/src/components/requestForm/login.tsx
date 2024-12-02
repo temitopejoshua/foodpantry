@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../modal";
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
-import * as yup from "yup";
 import Input from "../input";
 import {LoginRequest } from "../../types";
 import Button from "../button";
@@ -20,7 +19,13 @@ function LoginForm({ type = "CREATE", initialValue }: IProps) {
   
   const handleNavigate = () => {
     if(localStorage.getItem("userType") === "EMPLOYEE"){
-      navigate(`/admin/home`);
+      if(localStorage.getItem("role") === "FRONT_DESK"){
+        navigate(`/front-desk/home`);
+        return;
+      }else{
+        navigate(`/admin/home`);
+      }
+      
       return;
     }
     navigate(`/customer/home`);
