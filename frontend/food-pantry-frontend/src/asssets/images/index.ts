@@ -1,5 +1,4 @@
-import aws from "./aws.svg";
 import bowieStateLogo from "./bowie-state-logo.png"
 
-const images = {bowieStateLogo,aws}
+const images = {bowieStateLogo}
 export default images;

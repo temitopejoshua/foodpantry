@@ -10,8 +10,7 @@ import Td from "../../components/table/Td";
 import RequestStatusComponent from "../../components/requestStatus";
 import DonationRequestForm from '../../components/requestForm/donate';
 import { RequestStatus } from '../../types';
-import { BASE_URL, USER_TYPE } from '../../utils';
-import { useNavigate } from "react-router-dom";
+import { BASE_URL } from '../../utils';
 
 interface IProps { }
 

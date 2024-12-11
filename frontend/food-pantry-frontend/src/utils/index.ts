@@ -16,5 +16,5 @@ export default utils;
 
 
 export const USER_TYPE = localStorage.getItem("userType");
-export const BASE_URL = "http://10.0.0.192:5050";
+export const BASE_URL = "http://10.0.0.189:5050";
 
